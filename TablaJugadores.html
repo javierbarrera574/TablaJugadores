@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tabla de Jugadores</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f3;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333334;
+      padding: 20px;
+      background-color: #ffffff;
+      margin: 0;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    
+    th {
+      background-color: #333334;
+      color: #ffffff;
+    }
+    
+    td img {
+      max-width: 300px;
+      max-height: 300px;
+    }
+    
+    .player-input {
+      display: block;
+      margin-bottom: 50px;
+    }
+    
+    .button-container {
+      text-align: center;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tabla de Jugadores</h1>
+  
+  <div class="button-container">
+    <button onclick="agregarJugador()">Agregar Jugador</button>
+  </div>
+
+  <table id="jugadoresTable">
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Edad</th>
+      <th>Club</th>
+      <th>Imagen</th>
+    </tr>
+  </table>
+
+  <script>
+    // Matriz para almacenar los jugadores
+    var jugadores = [];
+    
+    // Función para agregar un nuevo jugador a la matriz y a la tabla
+    function agregarJugador() {
+      var nombre = prompt("Ingrese el nombre del jugador:");
+      var apellido = prompt("Ingrese el apellido del jugador:");
+      var edad = prompt("Ingrese la edad del jugador");
+      var club = prompt("Ingrese el club en donde juega el jugador:");
+      
+      // Validar que se haya ingresado un nombre, apellido y club
+      if (nombre && apellido && edad && club) {
+        var imagen = prompt("Ingrese la URL de la imagen del jugador:");
+        
+        // Agregar el jugador a la matriz
+        jugadores.push([nombre, apellido , edad , club, imagen]);
+        
+        // Obtener la tabla
+        var tabla = document.getElementById("jugadoresTable");
+        
+        // Crear una nueva fila
+        var fila = tabla.insertRow();
+        
+        // Insertar celdas en la fila
+        var nombreCelda = fila.insertCell();
+        var apellidoCelda = fila.insertCell();
+        var edadCelda = fila.insertCell();
+        var clubCelda = fila.insertCell();
+        var imagenCelda = fila.insertCell();
+        
+        // Agregar datos a las celdas
+        nombreCelda.textContent = nombre;
+        apellidoCelda.textContent = apellido;
+        edadCelda.textContent = edad;
+        clubCelda.textContent = club;
+        
+        var imagenElement = document.createElement("img");
+        imagenElement.src = imagen;
+        imagenElement.style.width = "300px";
+        imagenElement.style.height = "300px";
+        imagenCelda.appendChild(imagenElement);
+      }
+    }
+  </script>
+</body>
+</html>
